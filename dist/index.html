@@ -2,9 +2,73 @@
 <html>
   <head>
     <title>Backbone Tutorial</title>
+    <style>
+      .container {
+        text-align: center;
+      }
+      .todo {
+        list-style: none;
+      }
+      .form {
+        margin-bottom: 2rem;
+      }
+      .form-group {
+        margin: 0 auto;
+      }
+      .card {
+        margin: 0 auto;
+      }
+      .completed {
+        background-color: gray;
+        text-decoration: line-through;
+      }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Backbone Tutorial</h1>
-    <script src="app.js"></script>
+    <div class='container' id='main'>
+      <section class="todoapp">
+        <h1 class='title m-4'>Todo</h1>
+        <form id="add-form" role="form" class="form" onSubmit="return false">
+          <div class="form-group" style="width: 40rem; margin-bottom: 1rem;">
+            <input type="title" name="title" class="form-control" placeholder="Title"/>
+          </div>
+          <div class="form-group" style="width: 40rem; margin-bottom: 1rem;">
+            <textarea rows="5" name="memo" class="form-control" placeholder="Memo"></textarea>
+          </div>
+          <button id="add-todo" class="btn btn-primary">Add</button>
+        </form>
+        <div>
+          <p>残り<span id="count"></span></p>
+        </div>
+				<div id="todo-list"></div>
+      </section>
+
+      <script type="text/template" id="todo-template">
+        <div class="card" style="width: 40rem; margin-bottom: 2rem;">
+          <div class="card-body <%= completed ? 'completed' : '' %>">
+            <h3 class="card-title">
+              <%= title %>
+            </h3>
+            <div class="card-text">
+              <%= memo %>
+            </div>
+            <div style="display: flex; justify-content: center;">
+              <div style="margin: 1rem;">
+                <button class="toggle btn btn-success">
+                  <%= completed ? 'restore' : 'done' %>
+                </button>
+              </div>
+              <div style="margin: 1rem;">
+                <button class="delete btn btn-danger">delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </script>
+
+      <script src="app.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </div>
   </body>
 </html>
